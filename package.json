@@ -1,0 +1,36 @@
+{
+  "name": "typescript-graphql",
+  "scripts": {
+    "start": "node dist/server",
+    "clean": "rm -rf dist",
+    "build": "npm -s run clean && npm -s run generate && tsc",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema",
+    "postinstall": "npm -s run generate",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
+    "seed": "ts-node prisma/seed"
+  },
+  "dependencies": {
+    "@nexus/schema": "0.14.0",
+    "@prisma/client": "2.0.1",
+    "@types/node-fetch": "2.5.7",
+    "apollo-server": "2.14.3",
+    "graphql": "15.1.0",
+    "nexus-prisma": "0.15.0"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.0.0-beta.9",
+    "@types/faker": "^4.1.12",
+    "@types/node": "14.0.12",
+    "faker": "^4.1.0",
+    "ts-node": "8.10.2",
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.9.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+  }
+}
